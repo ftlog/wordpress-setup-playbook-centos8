@@ -33,6 +33,7 @@
     login_password: "{{ DB_LOGIN_PASSWORD }}"
     name: "{{ DB_NAME }}"
     state: present
+  no_log: true
   become: yes
 
 - name: create user

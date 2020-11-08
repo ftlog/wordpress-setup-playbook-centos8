@@ -3,6 +3,7 @@
   gather_facts: no
   roles:
   - nginx
+  - certbot
   - mariadb
   - php
   - setup
