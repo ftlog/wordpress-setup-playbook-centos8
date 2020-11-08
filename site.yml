@@ -1,0 +1,9 @@
+---
+- hosts: www
+  roles:
+  - nginx
+  - mariadb
+  - php
+  - setup
+  - firewalld
+  - service

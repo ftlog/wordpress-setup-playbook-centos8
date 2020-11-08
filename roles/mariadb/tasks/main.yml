@@ -1,0 +1,32 @@
+---
+- name: module install
+  dnf:
+    name:
+    - '@mariadb:10.3/server'
+    - '@mariadb:10.3/client'
+    - python3-PyMySQL
+    state: present
+  become: yes
+
+- name: start mariadb service
+  service:
+    name: mariadb
+    state: started
+  become: yes
+
+- name: create database
+  mysql_db:
+    #login_password: wp_pass
+    name: wp_db
+    state: present
+  become: yes
+
+- name: create user
+  mysql_user:
+    login_user: root
+    #login_password: wp_pass
+    name: wp_user
+    password: wp_user_pass
+    priv: wp_db.*:ALL
+    state: present
+  become: yes

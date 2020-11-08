@@ -1,0 +1,12 @@
+---
+- name: set firewall (service)
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  become: yes
+  loop:
+  - http
+  - https
+  when: service_list is defined
+  notify: restart firewalld

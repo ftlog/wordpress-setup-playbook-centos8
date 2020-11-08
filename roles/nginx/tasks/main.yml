@@ -1,0 +1,6 @@
+---
+- name: module install
+  dnf:
+    name: '@nginx:1.16/common'
+    state: present
+  become: yes
