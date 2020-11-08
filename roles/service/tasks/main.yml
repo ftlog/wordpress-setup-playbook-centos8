@@ -1,5 +1,27 @@
+---
+- name: conf
+  lineinfile:
+    dest: /etc/php-fpm.d/www.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: yes
+  become: yes
+  loop:
+  - regexp: '^user ='
+    line: 'user = nginx'
+  - regexp: '^group ='
+    line: 'group = nginx'
+
+- name: start php-fpm service
+  service:
+    name: php-fpm
+    state: restarted
+    enabled: yes
+  become: yes
+
 - name: start nginx service
   service:
     name: nginx
-    state: started
+    state: restarted
+    enabled: yes
   become: yes

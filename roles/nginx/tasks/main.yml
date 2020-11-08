@@ -4,3 +4,9 @@
     name: '@nginx:1.16/common'
     state: present
   become: yes
+
+- name: conf
+  template:
+    src: wordpress.conf.j2
+    dest: /etc/nginx/conf.d
+  become: yes

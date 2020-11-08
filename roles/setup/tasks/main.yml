@@ -13,9 +13,15 @@
 
 - name: chown
   file:
-    path: /usr/share/nginx/html
+    path: /usr/share/nginx/html/wordpress
     state: directory
-    owner: root
-    group: root
+    owner: nginx
+    group: nginx
     recurse: yes
+  become: yes
+
+- name: wp-config.php
+  template:
+    src: wp-config.php.j2
+    dest: /usr/share/nginx/html/wordpress/wp-config.php
   become: yes

@@ -12,6 +12,7 @@
   service:
     name: mariadb
     state: started
+    enabled: yes
   become: yes
 
 - name: create database
