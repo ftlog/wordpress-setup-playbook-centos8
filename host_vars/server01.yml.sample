@@ -1,0 +1,11 @@
+---
+ansible_ssh_user: user01
+ansible_become_password: user01_passowrd
+ansible_ssh_private_key_file: /path/to/id_rsa_vps
+
+wp_dir: /usr/share/nginx
+DB_LOGIN_USER: root
+DB_LOGIN_PASSWORD: wordpress
+DB_NAME: wordpress
+DB_USER: wordpress
+DB_PASSWORD: wordpress

@@ -15,19 +15,33 @@
     enabled: yes
   become: yes
 
+- name: set login password
+  mysql_user:
+    login_host: localhost
+    login_user: root
+    login_password:
+    name: "{{ DB_LOGIN_USER }}"
+    password: "{{ DB_LOGIN_PASSWORD }}"
+    state: present
+  no_log: true
+  ignore_errors: true
+
 - name: create database
   mysql_db:
-    #login_password: wp_pass
-    name: wp_db
+    login_host: localhost
+    login_user: "{{ DB_LOGIN_USER }}"
+    login_password: "{{ DB_LOGIN_PASSWORD }}"
+    name: "{{ DB_NAME }}"
     state: present
   become: yes
 
 - name: create user
   mysql_user:
-    login_user: root
-    #login_password: wp_pass
-    name: wp_user
-    password: wp_user_pass
-    priv: wp_db.*:ALL
+    login_host: localhost
+    login_user: "{{ DB_LOGIN_USER }}"
+    login_password: "{{ DB_LOGIN_PASSWORD }}"
+    name: "{{ DB_USER }}"
+    password: "{{ DB_PASSWORD }}"
+    priv: "{{ DB_NAME }}.*:ALL"
     state: present
   become: yes
