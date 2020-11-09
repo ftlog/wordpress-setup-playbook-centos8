@@ -18,8 +18,18 @@
     remote_src: yes
   become: yes
 
+- name: chown
+  file:
+    path: "{{ wp_dir }}/wordpress"
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: 0755
+    recurse: yes
+  become: yes
+
 - name: wp-config.php
   template:
     src: wp-config.php.j2
-    dest: "{{ wp_dir }}/wp-config.php"
+    dest: "{{ wp_dir }}/wordpress/wp-config.php"
   become: yes

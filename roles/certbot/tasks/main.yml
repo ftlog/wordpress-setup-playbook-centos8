@@ -13,12 +13,25 @@
     -m {{ admin_mail }} -d {{ server_name }}
   become: yes
 
-- name: cron job
-  cron:
-    name: certbot renew
-    minute: '0' 
-    hour: '0'
-    job: |
-      certbot renew --quiet --no-self-upgrade
-      --post-hook "systemctl nginx reload"
+- name: sysconfig
+  lineinfile:
+    dest: /etc/php-fpm.d/www.conf
+    regexp: '^POST_HOOK='
+    line: 'POST_HOOK="systemctl restart nginx"'
+    backup: yes
   become: yes
+
+- name: certbot-renew timer
+  service:
+    name: certbot-renew.timer
+    state: started
+    enabled: yes
+  become: yes
+
+# - name: cron job
+#   cron:
+#     name: certbot renew
+#     minute: "0"
+#     hour: "0"
+#     job: certbot renew --quiet --no-self-upgrade
+#   become: yes

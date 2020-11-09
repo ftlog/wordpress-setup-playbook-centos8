@@ -2,10 +2,11 @@
 - hosts: www
   gather_facts: no
   roles:
+  - remi
   - nginx
-  - certbot
-  - mariadb
   - php
+  - mariadb
   - wordpress
   - firewall
   - service
+  - certbot

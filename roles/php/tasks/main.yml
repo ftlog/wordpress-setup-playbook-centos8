@@ -1,11 +1,4 @@
 ---
-- name: remi repository
-  dnf:
-    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    state: present
-    disable_gpg_check: yes
-  become: yes
-
 - name: module install
   dnf:
     name: '@php:remi-7.4'
