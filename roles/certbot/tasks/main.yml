@@ -1,0 +1,24 @@
+---
+- name: module install
+  dnf:
+    name:
+    - python3-certbot
+    - python3-certbot-nginx
+    state: present
+  become: yes
+
+- name: create ssl certificate
+  command: |
+    certbot --nginx -n --agree-tos
+    -m {{ admin_mail }} -d {{ server_name }}
+  become: yes
+
+- name: cron job
+  cron:
+    name: certbot renew
+    minute: '0' 
+    hour: '0'
+    job: |
+      certbot renew --quiet --no-self-upgrade
+      --post-hook "systemctl nginx reload"
+  become: yes

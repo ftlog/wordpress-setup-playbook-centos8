@@ -6,6 +6,6 @@
   - certbot
   - mariadb
   - php
-  - setup
-  - firewalld
+  - wordpress
+  - firewall
   - service

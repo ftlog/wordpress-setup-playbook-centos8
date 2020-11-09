@@ -4,7 +4,7 @@
     url: https://ja.wordpress.org/latest-ja.tar.gz
     dest: /tmp/wordpress.tar.gz
   
-- name: chown
+- name: make directory, if not exists
   file:
     path: "{{ wp_dir }}"
     state: directory
