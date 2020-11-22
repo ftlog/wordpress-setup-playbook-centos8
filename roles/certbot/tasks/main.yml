@@ -15,7 +15,7 @@
 
 - name: sysconfig
   lineinfile:
-    dest: /etc/php-fpm.d/www.conf
+    dest: /etc/sysconfig/certbot
     regexp: '^POST_HOOK='
     line: 'POST_HOOK="systemctl restart nginx"'
     backup: yes
