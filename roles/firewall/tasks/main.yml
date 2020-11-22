@@ -1,11 +1,6 @@
 ---
-- name: set firewall (service)
-  ansible.posix.firewalld:
-    service: "{{ item }}"
-    permanent: yes
-    state: enabled
-  become: yes
-  loop:
-  - http
-  - https
-  notify: restart firewalld
+- include_tasks: set_firewall_2_9.yml
+  when: ansible_version.full is version('2.10.0', '<')
+
+- include_tasks: set_firewall_2_10.yml
+  when: ansible_version.full is version('2.10.0', '>=')

@@ -1,5 +1,5 @@
 ---
-- hosts: www
+- hosts: all
   gather_facts: no
   roles:
   - remi
@@ -9,4 +9,3 @@
   - wordpress
   - firewall
   - service
-  - certbot

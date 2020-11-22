@@ -1,0 +1,11 @@
+---
+- name: set firewall (service)
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  become: yes
+  loop:
+  - http
+  - https
+  notify: restart firewalld
