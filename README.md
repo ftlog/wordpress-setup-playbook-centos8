@@ -20,11 +20,13 @@ CentOS8でWordPress環境を構築するPlaybookを作成しました。
 ## 動作確認環境
 
 <コントロールノード>  
+◆ ansible  
 Raspbian GNU/Linux 10 (buster)  
 ansible 2.10.2  
 $ ansible-galay collection install ansible.posix  
 Python 3.7.3  
 
+◆ AWX  
 CentOS Linux release 8.2.2004 (Core)  
 Docker version 19.03.13   
 docker-compose version 1.27.4  
@@ -85,8 +87,8 @@ $ git clone https://github.com/ftlog/wordpress-setup-playbook-centos8
 $ cd wordpress-setup-playbook-centos8
 ```
 
-設定が終わった後、以下のコマンドを実行します。
-※enable_ssl.ymlは、WordPressの設定が終わった後、外部公開時に実行する想定です。
+設定が終わった後、以下のコマンドを実行します。  
+※enable_ssl.ymlは、WordPressの設定が終わった後、外部公開時に実行してください。
 
 ```
 $ ansible-playbook site.yml
