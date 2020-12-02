@@ -17,7 +17,8 @@
   lineinfile:
     dest: /etc/sysconfig/certbot
     regexp: '^POST_HOOK='
-    line: 'POST_HOOK="systemctl restart nginx"'
+    line: |
+      POST_HOOK="--post-hook 'systemctl restart nginx'"
     backup: yes
   become: yes
 
